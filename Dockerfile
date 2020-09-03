@@ -1,12 +1,7 @@
-FROM alpine:latest
+FROM alpine:3.12
 
-LABEL version="0.0.1"
-LABEL repository="https://github.com/lakuapik/gh-actions-http-status"
-LABEL homepage="https://github.com/lakuapik/gh-actions-http-status"
-LABEL maintainer="David Adi Nugroho <davidadi216@gmail.com>"
+RUN apk add --no-cache bash curl jq
 
-RUN apk add bash curl jq
+COPY entrypoint.sh /entrypoint.sh
 
-COPY entrypoint /usr/local/bin/entrypoint
-RUN chmod +x /usr/local/bin/entrypoint
-ENTRYPOINT ["/usr/local/bin/entrypoint"]
+ENTRYPOINT ["/entrypoint.sh"]

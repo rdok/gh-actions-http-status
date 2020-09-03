@@ -1,0 +1,14 @@
+name: build-status
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build
+        uses: ./
+        with:
+          sites: '["http://github.com", "https://education.github.com"]'
+          expected: '[301, 200]'
